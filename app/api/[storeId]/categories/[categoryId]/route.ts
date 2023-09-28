@@ -87,7 +87,7 @@ export async function DELETE(
         id: params.categoryId,
       },
     });
-    
+
     return NextResponse.json(category);
   } catch (error) {
     console.log('[CATEGORY_DELETE]', error);
@@ -107,6 +107,9 @@ export async function GET(
     const category = await prismadb.category.findUnique({
       where: {
         id: params.categoryId,
+      },
+      include: {
+        billboard: true,
       },
     });
 
